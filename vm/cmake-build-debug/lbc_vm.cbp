@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug"/>
+				<Option working_dir="/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug"/>
+				<Option working_dir="/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug"/>
+				<Option working_dir="/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lbc_vm">
-				<Option output="/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/lbc_vm" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug"/>
+				<Option output="/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/lbc_vm" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 lbc_vm"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 lbc_vm"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lbc_vm/fast">
-				<Option output="/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/lbc_vm" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug"/>
+				<Option output="/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/lbc_vm" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,17 +77,17 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 lbc_vm/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 lbc_vm/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/lamon/src/src.lbc/lbc-vm/main.cpp">
+		<Unit filename="/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/main.cpp">
 			<Option target="lbc_vm"/>
 		</Unit>
-		<Unit filename="/home/lamon/src/src.lbc/lbc-vm/CMakeLists.txt">
+		<Unit filename="/home/lamon/src/src.lbc/lbc-compiler-and-vm/vm/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
