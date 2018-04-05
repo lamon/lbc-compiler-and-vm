@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
-project(lbc_vm)
+project(vm)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(lbc_vm main.cpp)
+add_executable(vm main.cpp)
