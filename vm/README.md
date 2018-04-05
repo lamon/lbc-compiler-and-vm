@@ -40,7 +40,7 @@ ADD
 - Instrução compilada: 0b0001000000010010 -> |0001|0000|0001|0010|
  
 Realiza a soma do valor que está no registro R0 com o valor que está
-no registro R1 e salva o resultado no registro R2
+no registro R1 e salva o resultado no registro R2.
 ```
 
 ```
@@ -67,5 +67,62 @@ LOAD
 - Instrução: LOAD R0 0b00001010
 - Instrução compilada: 0b1000000000001010 -> |1000|0000|0000|1010
  
-Carrega o valor que está no endereço de memória 0b00001010 para o registro R0
+Carrega o valor que está no endereço de memória 0b00001010 para o registro R0.
 ```
+
+
+**Instruções Tipo C:**
+    
+Utilizado para operações condicionais
+
+(Instrução) | (Endereço Memória de Dados) | (últimos 4 bits não são usados)
+:---: | :---: | ---
+4 bits | 8 bits | 4 bits
+`MSB` | | `LSB`
+     	 
+```
+JMP
+- Instrução: JMP 0b00001010
+- Instrução compilada: 0b0100000010100000 -> |0100|00001010|0000
+ 
+JMP incondicional, carrega PC com o valor que está no endereço de memória 0b00001010 
+```
+
+```
+JMPT
+- Instrução: JMPT 0b00001010
+- Instrução compilada: 0b0101000010100000 -> |0101|00001010|0000
+ 
+JMP condicional, se o bit boleano do registrador Flag estiver setado,
+carrega PC com o valor que está no endereço de memória 0b00001010 
+```
+
+```
+JMPF
+- Instrução: JMPT 0b00001010
+- Instrução compilada: 0b0101000010100000 -> |0101|00001010|0000
+ 
+JMP condicional, se o bit boleano do registrador Flag NÃO estiver setado,
+carrega PC com o valor que está no endereço de memória 0b00001010 
+```
+
+**Registradores:**
+
+*Tamanho dos registradores: 16 bits*
+
+| Registrador | Bin    | Descrição         |
+| ----------- |:------:| :----------------:|
+| RA          | 0001   | registrySourceA   |
+| RB          | 0010   | registrySourceB   |
+| RD          | 0011   | registryDestiny   |
+| RF          | 0100   | registryFlag      |
+| R0          | 0000   | registryCommon 0  |
+| R1          | 0001   | registryCommon 1  |
+| R2          | 0010   | registryCommon 2  |
+| R3          | 0011   | registryCommon 3  |
+| R4          | 0100   | registryCommon 4  |
+| R5          | 0101   | registryCommon 5  |
+| R6          | 0110   | registryCommon 6  |
+| R7          | 0111   | registryCommon 7  |
+| R8          | 1000   | registryCommon 8  |
+| R9          | 1001   | registryCommon 9  |
