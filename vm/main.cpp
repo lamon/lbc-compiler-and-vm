@@ -14,7 +14,9 @@ unsigned int programMemory[memorySize];
 unsigned int dataMemory[memorySize] = {1, 2, 0, 0, 0, 0, 0, 0}; // maximo seria 256, pq somente 8 bits foram usados para endereçar
 
 // Cache a nível de memória de dados
-unsigned int dataMemoryCache[memorySize];
+unsigned int dataMemoryCacheValue;
+unsigned int dataMemoryCacheAddress;
+bool isCacheValid = false;
 
 // Registradores
 unsigned int pc;
@@ -73,20 +75,22 @@ void execute() {
     } else if (instructionType == 8) {
         // LOAD
 
-        if (dataMemoryCache[registryAddressMemory] != 0b0000000000000000) {
+        if (isCacheValid && registryAddressMemory == dataMemoryCacheAddress) {
             // cache hit
-            registryCommon[registryDestiny] = dataMemoryCache[registryAddressMemory];
+            registryCommon[registryDestiny] = dataMemoryCacheValue;
         } else {
             // cache miss
-            registryCommon[registryDestiny] = dataMemory[registryAddressMemory];
-            dataMemoryCache[registryAddressMemory] = registryCommon[registryDestiny]; // salva no cache
+            registryCommon[registryDestiny] = dataMemory[registryAddressMemory]; // nao achou no cache, vai na memoria buscar
+            dataMemoryCacheValue = registryCommon[registryDestiny]; // salva no cache o valor
+            dataMemoryCacheAddress = registryAddressMemory; // salva no cache o endereço
+            isCacheValid = true;
         }
 
     } else if (instructionType == 9) {
         // STORE
 
-        if (dataMemoryCache[registryAddressMemory] != 0b0000000000000000) {
-            dataMemoryCache[registryAddressMemory] = 0b0000000000000000; // invalida o cache
+        if (dataMemoryCacheAddress != registryAddressMemory) {
+            isCacheValid = false;
         }
 
         dataMemory[registryAddressMemory] = registryCommon[registrySourceA];
