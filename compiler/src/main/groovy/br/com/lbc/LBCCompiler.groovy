@@ -7,39 +7,45 @@ class LBCCompiler {
 
     static void main(String[] args) {
 
-        if (!args[0] && !args[1]) {
-
-            println "Please input a .lbc source code and destiny file name"
-            println "Example: \$ java -jar lbc-compiler.jar source.lbc destiny.out"
-
-        } else {
-
-            sourceCodeFilename = args[0]
-            compiledCodeFilename = args[1]
-
-            def sourceFile = new File(sourceCodeFilename)
-
-            // TODO implementar limite de 256 linhas de código
-
-            if (!sourceFile) {
-                println "File not found... :("
-            } else {
-                def resultFromCompileSource = compileSource(sourceFile)
-                if (resultFromCompileSource.hasErrors()) {
-                    println resultFromCompileSource.toString()
-                } else {
-                    def compiledCodeFile = new File(compiledCodeFilename)
-                    compiledCodeFile.withWriter('UTF-8') { writer ->
-                        resultFromCompileSource.value.each {
-                            writer.write(it.toString().padRight(16, "0") + "\n")
-                        }
-                    }
-                    println "Compiled Code generated: ${compiledCodeFilename}"
-                }
-            }
-
+        if (!args) {
+            noArgsError()
+            return
         }
 
+        if (args.size() < 2) {
+            noArgsError()
+            return
+        }
+
+        sourceCodeFilename = args[0]
+        compiledCodeFilename = args[1]
+
+        def sourceFile = new File(sourceCodeFilename)
+
+        // TODO implementar limite de 256 linhas de código
+
+        if (!sourceFile) {
+            println "File not found... :("
+        } else {
+            def resultFromCompileSource = compileSource(sourceFile)
+            if (resultFromCompileSource.hasErrors()) {
+                println resultFromCompileSource.toString()
+            } else {
+                def compiledCodeFile = new File(compiledCodeFilename)
+                compiledCodeFile.withWriter('UTF-8') { writer ->
+                    resultFromCompileSource.value.each {
+                        writer.write(it.toString().padRight(16, "0") + "\n")
+                    }
+                }
+                println "Compiled Code generated: ${compiledCodeFilename}"
+            }
+        }
+
+    }
+
+    static noArgsError() {
+        println "Please input a .lbc source code and destiny file name"
+        println "Example: \$ java -jar lbc-compiler.jar source.lbc destiny.out"
     }
 
     static compileSource(File sourceFile) {
