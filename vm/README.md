@@ -158,18 +158,18 @@ LINE: A cache projetada possui apenas 2 linhas, portanto será nencesário apena
 
 TAG: É o que sobra.... 14 bits (16 bits (total) - 1 bit (LINE) - 1 bit (WORD)).
 
+(TAG - 14 bits) | (LINE - 1 bit) | (WORD - 1 bit)
+:---: | :---: | ---
+0b 0000 0000 0000 00 | 0 | 0
 
-0b 0000 0000 0000 00 |       0      |   0
-     (TAG - 14 bits)  (LINE - 1 bit)  (WORD - 1 bit)
-
-Exemplo de enderaçamento na cache:
+Exemplo de endereçamento na cache:
 
 Suponha que a CPU solicitou a instrução que esta no endereço
 0b 0000 0000 0000 0011 (end. 3)
 
-    0b 0000 0000 0000 00 |       1      |   1
-     (TAG - 14 bits)      (LINE - 1 bit)  (WORD - 1 bit)
-
+(TAG - 14 bits) | (LINE - 1 bit) | (WORD - 1 bit)
+:---: | :---: | ---
+0b 0000 0000 0000 00 | 1 | 1
 
 Este endereço deve ser procurado na linha 1 da cache e a TAG deve estar com o
 valor 0. Caso ocorra sucesso (a TAG presente na linha 1 seja igual a esperada)
