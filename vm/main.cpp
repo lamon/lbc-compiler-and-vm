@@ -5,6 +5,14 @@
 
 using namespace std;
 
+// Definicao da Memoria cache
+typedef struct LineMemoryCache
+{
+    bool 			bValid;
+    unsigned int	Tag;
+    unsigned int 	Data[2];
+} LineMemoryCacheStruct;
+
 const int memorySize = 256;
 
 // Memoria de programa
@@ -14,9 +22,7 @@ unsigned int programMemory[memorySize];
 unsigned int dataMemory[memorySize] = {1, 2, 0, 0, 0, 0, 0, 0}; // maximo seria 256, pq somente 8 bits foram usados para endereçar
 
 // Cache a nível de memória de dados
-unsigned int dataMemoryCacheValue;
-unsigned int dataMemoryCacheAddress;
-bool isCacheValid = false;
+LineMemoryCacheStruct dataMemoryCache[2]; // numero de linhas da cache
 
 // Registradores
 unsigned int pc;
@@ -28,6 +34,55 @@ unsigned int registryDestiny;
 unsigned int registryAddressMemory;
 unsigned int registryFlag;
 unsigned int registryCommon[10]; // dez registradores de uso geral
+
+unsigned int load_cache(unsigned int inst_addr)
+{
+    unsigned char Line, Word, i;
+    unsigned int Tag;
+    unsigned int InstAux;
+    unsigned int AuxInstAdd;
+
+
+    Word = inst_addr & 0x01;
+    Line = inst_addr >> 1;
+    Line &= 0x01;
+    Tag = inst_addr >> 2;
+
+    dataMemoryCache[Line].bValid = true;
+    dataMemoryCache[Line].Tag = Tag;
+    AuxInstAdd = inst_addr - Word;
+    for(i = 0; i < 2; i++)
+    {
+        dataMemoryCache[Line].Data[i] = programMemory[AuxInstAdd + i];
+        if((AuxInstAdd + i) == inst_addr)InstAux = programMemory[AuxInstAdd + i];
+    }
+
+    return InstAux;
+}
+
+unsigned int get_in_cache(unsigned int inst_addr)
+{
+    unsigned char Line, Word;
+    unsigned int Tag;
+    unsigned int InstAux;
+
+    Word = inst_addr & 0x01;
+    Line = inst_addr >> 1;
+    Line &= 0x01;
+    Tag = inst_addr >> 2;
+
+    if(dataMemoryCache[Line].bValid)
+    {
+        if(dataMemoryCache[Line].Tag == Tag)
+        {
+            InstAux = dataMemoryCache[Line].Data[Word];
+        }
+        else InstAux = load_cache(inst_addr);
+    }
+    else InstAux = load_cache(inst_addr);
+
+    return InstAux;
+}
 
 void decode() {
 
@@ -74,25 +129,9 @@ void execute() {
         registryCommon[registryDestiny] = registryCommon[registrySourceA] - registryCommon[registrySourceB];
     } else if (instructionType == 8) {
         // LOAD
-
-        if (isCacheValid && registryAddressMemory == dataMemoryCacheAddress) {
-            // cache hit
-            registryCommon[registryDestiny] = dataMemoryCacheValue;
-        } else {
-            // cache miss
-            registryCommon[registryDestiny] = dataMemory[registryAddressMemory]; // nao achou no cache, vai na memoria buscar
-            dataMemoryCacheValue = registryCommon[registryDestiny]; // salva no cache o valor
-            dataMemoryCacheAddress = registryAddressMemory; // salva no cache o endereço
-            isCacheValid = true;
-        }
-
+        registryCommon[registryDestiny] = dataMemory[registryAddressMemory];
     } else if (instructionType == 9) {
         // STORE
-
-        if (dataMemoryCacheAddress != registryAddressMemory) {
-            isCacheValid = false;
-        }
-
         dataMemory[registryAddressMemory] = registryCommon[registrySourceA];
     } else if (instructionType == 2) {
         // CMP
@@ -149,9 +188,14 @@ int main(int argc, char** argv) {
     for (i = 0; i < 10; i++) {
         registryCommon[i] = 0;
     }
+    for(i = 0; i < 2; i++)
+    {
+        dataMemoryCache[i].bValid = false;
+    }
+    /* ------------------------------ */
 
     while (pc < memorySize) {
-        instruction = programMemory[pc]; // busca da instrução
+        instruction = get_in_cache(pc); // busca da instrução
         pc = pc + 1; // ja defino a proxima instrução
         decode();    // decodificação
         execute();  // execução
