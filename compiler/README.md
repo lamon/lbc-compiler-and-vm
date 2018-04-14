@@ -13,3 +13,8 @@ do curso de pós graduação em Internet das Coisas do Instituto Nacional de Tel
 "source.lbc" é o nome do arquivo fonte .lbc
 
 "destiny.out" é o nome do arquivo de destino
+
+**Para gerar um novo arquivo .jar**
+
+Use a tarefa gradle "uberjar":
+> $ ./gradlew uberjar

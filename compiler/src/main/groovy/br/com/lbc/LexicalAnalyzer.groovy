@@ -33,7 +33,7 @@ class LexicalAnalyzer {
                 Symbols.valueOf(symbol)
             } catch (IllegalArgumentException e) {
                 if (!symbol?.toString()?.startsWith("0b")) {
-                    result.addError("Invalid symbol at line ${lineNumber}: ${symbol}")
+                    result.addError("Simbolo inválido na linha ${lineNumber}: ${symbol}")
                 }
             }
         }

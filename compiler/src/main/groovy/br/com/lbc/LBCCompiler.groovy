@@ -25,7 +25,7 @@ class LBCCompiler {
         // TODO implementar limite de 256 linhas de código
 
         if (!sourceFile) {
-            println "File not found... :("
+            println "Arquivo não encontrado... :("
         } else {
             def resultFromCompileSource = compileSource(sourceFile)
             if (resultFromCompileSource.hasErrors()) {
@@ -37,15 +37,15 @@ class LBCCompiler {
                         writer.write(it.toString().padRight(16, "0") + "\n")
                     }
                 }
-                println "Compiled Code generated: ${compiledCodeFilename}"
+                println "Arquivo gerado: ${compiledCodeFilename}"
             }
         }
 
     }
 
     static noArgsError() {
-        println "Please input a .lbc source code and destiny file name"
-        println "Example: \$ java -jar lbc-compiler.jar source.lbc destiny.out"
+        println "Por favor informe um arquivo fonte .lbc e um nome de arquivo qualquer para o destino"
+        println "Exemplo: \$ java -jar lbc-compiler.jar source.lbc destiny.out"
     }
 
     static compileSource(File sourceFile) {
