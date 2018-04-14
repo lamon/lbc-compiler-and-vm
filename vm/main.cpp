@@ -9,8 +9,8 @@ using namespace std;
 typedef struct LineMemoryCache
 {
     bool 			bValid;
-    unsigned int	Tag;
-    unsigned int 	Data[2];
+    unsigned int	tag;
+    unsigned int 	data[2];
 } LineMemoryCacheStruct;
 
 const int memorySize = 256;
@@ -19,10 +19,10 @@ const int memorySize = 256;
 unsigned int programMemory[memorySize];
 
 // Memoria de dados
-unsigned int dataMemory[memorySize] = {1, 2, 0, 0, 0, 0, 0, 0}; // maximo seria 256, pq somente 8 bits foram usados para endereçar
+unsigned int dataMemory[memorySize] = { 1, 2, 0, 0, 0, 0, 0, 0 }; // maximo seria 256, pq somente 8 bits foram usados para endereçar
 
 // Cache a nível de memória de dados
-LineMemoryCacheStruct dataMemoryCache[2]; // numero de linhas da cache
+LineMemoryCacheStruct dataMemoryCache[2]; // número de linhas da cache
 
 // Registradores
 unsigned int pc;
@@ -37,51 +37,51 @@ unsigned int registryCommon[10]; // dez registradores de uso geral
 
 unsigned int load_cache(unsigned int inst_addr)
 {
-    unsigned char Line, Word, i;
-    unsigned int Tag;
-    unsigned int InstAux;
-    unsigned int AuxInstAdd;
+    unsigned char line, word, i;
+    unsigned int tag;
+    unsigned int instAux;
+    unsigned int auxInstAdd;
 
+    word = inst_addr & 0x01;
+    line = inst_addr >> 1;
+    line &= 0x01;
+    tag = inst_addr >> 2;
 
-    Word = inst_addr & 0x01;
-    Line = inst_addr >> 1;
-    Line &= 0x01;
-    Tag = inst_addr >> 2;
-
-    dataMemoryCache[Line].bValid = true;
-    dataMemoryCache[Line].Tag = Tag;
-    AuxInstAdd = inst_addr - Word;
-    for(i = 0; i < 2; i++)
-    {
-        dataMemoryCache[Line].Data[i] = programMemory[AuxInstAdd + i];
-        if((AuxInstAdd + i) == inst_addr)InstAux = programMemory[AuxInstAdd + i];
+    dataMemoryCache[line].bValid = true;
+    dataMemoryCache[line].tag = tag;
+    auxInstAdd = inst_addr - word;
+    for (i = 0; i < 2; i++) {
+        dataMemoryCache[line].data[i] = programMemory[auxInstAdd + i];
+        if ((auxInstAdd + i) == inst_addr) {
+            instAux = programMemory[auxInstAdd + i];
+        }
     }
 
-    return InstAux;
+    return instAux;
 }
 
 unsigned int get_in_cache(unsigned int inst_addr)
 {
-    unsigned char Line, Word;
-    unsigned int Tag;
-    unsigned int InstAux;
+    unsigned char line, word;
+    unsigned int tag;
+    unsigned int instAux;
 
-    Word = inst_addr & 0x01;
-    Line = inst_addr >> 1;
-    Line &= 0x01;
-    Tag = inst_addr >> 2;
+    word = inst_addr & 0x01;
+    line = inst_addr >> 1;
+    line &= 0x01;
+    tag = inst_addr >> 2;
 
-    if(dataMemoryCache[Line].bValid)
-    {
-        if(dataMemoryCache[Line].Tag == Tag)
-        {
-            InstAux = dataMemoryCache[Line].Data[Word];
+    if (dataMemoryCache[line].bValid) {
+        if(dataMemoryCache[line].tag == tag) {
+            instAux = dataMemoryCache[line].data[word];
+        } else {
+            instAux = load_cache(inst_addr);
         }
-        else InstAux = load_cache(inst_addr);
+    } else {
+        instAux = load_cache(inst_addr);
     }
-    else InstAux = load_cache(inst_addr);
 
-    return InstAux;
+    return instAux;
 }
 
 void decode() {
@@ -174,8 +174,8 @@ void loadProgramMemory(const string &compiledCodeFilename) {
 int main(int argc, char** argv) {
 
     if (argc < 2) {
-        cout << "Please input a .lbc compiled code\n";
-        cout << "Example: $ " << argv[0] << " destiny.out\n";
+        cout << "Por favor informe um arquivo lbc compilado\n";
+        cout << "Exemplo: $ " << argv[0] << " arquivo-lbc-compilado.out\n";
         return 1;
     }
 
@@ -183,13 +183,12 @@ int main(int argc, char** argv) {
 
     unsigned char i;
 
-    // Inicializacao dos registros
+    /* Inicializacao dos registros */
     pc = 0;
     for (i = 0; i < 10; i++) {
         registryCommon[i] = 0;
     }
-    for(i = 0; i < 2; i++)
-    {
+    for (i = 0; i < 2; i++) {
         dataMemoryCache[i].bValid = false;
     }
     /* ------------------------------ */
@@ -197,8 +196,8 @@ int main(int argc, char** argv) {
     while (pc < memorySize) {
         instruction = get_in_cache(pc); // busca da instrução
         pc = pc + 1; // ja defino a proxima instrução
-        decode();    // decodificação
-        execute();  // execução
+        decode(); // decodificação
+        execute(); // execução
     }
 
     return 0;
